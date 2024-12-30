@@ -1,0 +1,23 @@
+<?php
+
+namespace YahnisElsts\PluginUpdateChecker\v5p5\DebugBar;
+
+use YahnisElsts\PluginUpdateChecker\v5p5\Theme\UpdateChecker;
+if (!class_exists(\YahnisElsts\PluginUpdateChecker\v5p5\DebugBar\ThemePanel::class, \false)) {
+    class ThemePanel extends \YahnisElsts\PluginUpdateChecker\v5p5\DebugBar\Panel
+    {
+        /**
+         * @var UpdateChecker
+         */
+        protected $updateChecker;
+        protected function displayConfigHeader()
+        {
+            $this->row('Theme directory', htmlentities($this->updateChecker->directoryName));
+            parent::displayConfigHeader();
+        }
+        protected function getUpdateFields()
+        {
+            return array_merge(parent::getUpdateFields(), array('details_url'));
+        }
+    }
+}
